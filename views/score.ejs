@@ -1,0 +1,282 @@
+<%- include('./partials/header'); -%>
+<% var score1=0,score2=0,score3=0,score4=0,score5=0,score6=0, score=0; %>
+<% user.subjects.forEach(function(subject) { %>
+<%     score=score+subject.lecture+subject.tutorial+subject.practical*(0.5); }); %>
+<% if (score>14){ %>	
+<% score=14;}  %>	
+<% score1+=score;  %>	
+
+<%  score=0 %>
+<% user.moocs.forEach(function(mooc) {	%>
+<% if(mooc.type=='Organised'){	%>
+<%	score=score+5;	%>
+<% } else {score=score+3;}});	%>
+<% score1+=score;	%>
+
+<%  score=0 %>
+<% user.innovs.forEach(function(innov) { %>
+<%     score=score+1; }); %>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score1+=score;  %>	
+
+<%  score=0 %>
+<% user.details.forEach(function(detail) {	%>
+<% if(detail.type=='lab'){	%>
+<%	score=score+2;	%>
+<% } else {score=score+1;}});	%>
+<% score1+=score;	%>
+
+<%  score=0 %>
+<% user.instructs.forEach(function(instruct) { %>
+<%     score=score+1; }); %>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score1+=score;  %>
+
+
+<%  score=0 %>
+<% user.projects.forEach(function(project) { %>
+<%     score=score+project.num*2; }); %>
+<% if (score>10){ %>	
+<% score=10;}  %>	
+<% score1+=score;  %>	
+
+
+<%  score=0 %>
+<% user.phds.forEach(function(phd) { %>
+<%     score=score+2; }); %>
+<% score1+=score;  %>
+
+<% if(score1 >30){score1=30;} %>
+
+
+
+
+
+
+<%  score=0 %>
+<% user.journals.forEach(function(journal) {	%>
+<% if(journal.areaofRes=="SCI"){	%>
+<%	score=score+3;	%>
+<% } else if (journal.areaofRes=="SCOPUS")	{ %>
+<%  score=score+2; %>
+<% } else if (journal.areaofRes=="Unpaid")	{ %>
+<%  score=score+1; %>
+<% } else {score=score;} });	%>
+<% score2+=score;	%>
+
+
+
+<%  score=0 %>
+<% user.papers.forEach(function(paper) {	%>
+<% if(paper.areaofRes=="SCOPUS"){	%>
+<%	score=score+1;	%>
+<% } else {score=score+0.5;}});	%>
+<% score2+=score;	%>	
+
+
+<%  score=0 %>
+<% user.books.forEach(function(book) {	%>
+<% if(book.type=="Authored"){	%>
+<%	score=score+2;	%>
+<% } else {score=score+1;}});	%>
+<% if (score>4){ %>	
+<% score=4;}  %>	
+<% score2+=score;	%>
+
+
+
+<%  score=0 %>
+<% user.reports.forEach(function(report) { %>
+<%     score=score+1; }); %>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score2+=score;  %>
+
+<% if(score2 >30){score2=30;} %>
+
+
+
+<%  score=0 %>
+<% user.srps.forEach(function(srp) {	%>
+<% if(srp.financial>=1000000){	%>
+<%	 score=score+5;	%>
+<% } else {score=score+2;}});	%>
+<% score3+=score;	%>	
+
+
+<%  score=0 %>
+<% user.cps.forEach(function(cp) {	%>
+<% if(cp.financial>=500000){	%>
+<%	 score=score+1;	%>
+<% } else {score=score+0.5;}});	%>
+<% if (score>10){ %>	
+<% score=10;}  %>	
+<% score3+=score;  %>
+
+
+<%  score=0 %>
+<% user.patents.forEach(function(patent) {	%>
+<% if(patent.status='Awarded'){	%>
+<%	 score=score+5;	%>
+<% } else {score=score+2;}});	%>	
+<% score3+=score;  %>
+
+
+<%  score=0 %>
+<% user.lectures.forEach(function(lecture) { %>
+<%     score=score+1; }); %>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score3+=score;  %>
+
+<% if(score3 >16){score3=16;} %>
+
+
+<%  score=0 %>
+<% user.orgCourses.forEach(function(orgCourse) {	%>
+<% if(orgCourse.type=='International'){	%>
+<%	 score=score+2;	%>
+<% } else {score=score+1;}});	%>	
+<% score4+=score;  %>
+
+
+
+<%  score=0 %>
+<% user.stcs.forEach(function(stc) {	%>
+<% if(stc.type=='Outside'){	%>
+<%	score=score+1;	%>
+<% } else {score=score+0.5;}});	%>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score4+=score;	%>
+
+<%  score=0 %>
+<% user.visits.forEach(function(visit) { %>
+<%     score=score+1; }); %>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score4+=score;  %>
+
+<%  score=0 %>
+<% user.extensions.forEach(function(extension) { %>
+<%     score=score+1; }); %>
+<% if (score>5){ %>	
+<% score=5;}  %>	
+<% score4+=score;  %>
+
+
+<% if(score4 >13){score4=13;} %>
+
+
+
+<%  score=0 %>
+<% user.depts.forEach(function(dept) { %>
+<%     score=score+1; }); %>
+<% if (score>2){ %>	
+<% score=2;}  %>	
+<% score5+=score;  %>
+
+
+<%  score=0 %>
+<% user.insts.forEach(function(insituteResp) { %>
+<%     score=score+2; }); %>
+<% if (score>5){ %>	
+<% score=5;}  %>	
+<% score5+=score;  %>
+
+
+<%  score=0 %>
+<% user.assignments.forEach(function(assignment) { %>
+<%     score=score+1; }); %>
+<% if (score>4){ %>	
+<% score=4;}  %>	
+<% score5+=score;  %>
+
+
+<% if(score5 >9){score5=9;} %>
+
+<% user.others.forEach(function(other) { %>
+<%     score6=score6 + 1; }); %>
+<% if (score6> 2){ %>	
+<% score6 =2;}  %>	
+
+
+	
+<%= score %>
+
+<div class="page-container">
+ <div class="container" >
+   
+    <table class="table table-bordered table-striped">
+      <tbody>
+        <tr>
+          <th>S No.</th>
+          <th>Component</th>
+		  <th>Max. marks</th>
+		  <th>Marks obtained</th>
+          </tr>
+        <tr>
+        <td>1</td>
+        <td>INSTRUCTIONAL ELEMENT</td>
+		<td>30</td>
+		<td><%= score1 %></td>
+        </tr>
+		<tr>
+        <td>2</td>
+        <td>RESEARCH PAPERS/PUBLICATIONS</td>
+		<td>30</td>
+		<td><%= score2 %></td>
+        </tr>
+		<tr>
+        <td>3</td>
+        <td>SPONSORED R & D CONSULTANCY & EXTENSION ELEMENTS</td>
+		<td>16</td>
+		<td><%= score3 %></td>
+        </tr>
+		<tr>
+        <td>4</td>
+        <td>ORGANIZATION/PARTICIPATION OF COURSES/CONFERENCES/SEMINAR/ WORKSHOP AND OTHER EXTENSION WORKS</td>
+		<td>13</td>
+		<td><%= score4 %></td>
+        </tr>
+		<tr>
+        <td>5</td>
+        <td>MANGEMENT & INSTITUTIONAL DEVELOPMENT ELEMENTS</td>
+		<td>09</td>
+		<td><%= score5 %></td>
+        </tr>
+		<tr>
+        <td>6</td>
+        <td>OTHER WORKS</td>
+		<td>2</td>
+		<td><%= score6 %></td>
+        </tr>
+		<tr>
+        <td></td>
+        <td>GRAND TOTAL</td>
+		<td>100</td>
+		<td><%= score1+score2+score3+score4+score5+score6 %></td>
+        </tr>
+      </tbody>
+      </table>
+    
+    
+    
+    
+        <form action="/printNode" method="get" id="f" style="margin: 0 auto;"> 
+            <!-- <label for="dept">Dept:</label>
+           		<input type="text" name="dept" id="dept"> -->
+            <div class="col-md-12  mb-3">
+                <br>
+                <button class="btn btn-primary" type="submit">Generate PDF</button>
+            </div>
+        
+        </form>
+</div>
+    
+    
+    
+
+<%- include('./partials/footer'); -%>
